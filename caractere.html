@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometric Shape Generator</title>
+    <style>
+        body {
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .shape-container {
+            margin-top: 20px;
+            white-space: pre; /* Preserves whitespace and line breaks */
+            font-size: 2em; /* Adjust as needed */
+            line-height: 1em; /* Adjust as needed */
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="color"], input[type="text"] {
+            margin-bottom: 15px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Geometric Shape Generator</h1>
+
+    <form id="shapeForm">
+        <label for="shapeColor">Choose Color:</label>
+        <input type="color" id="shapeColor" value="#FF0000"><br>
+
+        <label for="shapeChar">Enter Character:</label>
+        <input type="text" id="shapeChar" maxlength="1" value="*"><br>
+
+        <button type="button" onclick="generateShape()">Generate Shape</button>
+    </form>
+
+    <div id="shapeDisplay" class="shape-container"></div>
+
+    <script>
+        function generateShape() {
+            const color = document.getElementById('shapeColor').value;
+            const character = document.getElementById('shapeChar').value;
+            const shapeDisplay = document.getElementById('shapeDisplay');
+
+            // Example: A simple pyramid shape
+            let shape = "";
+            for (let i = 1; i <= 5; i++) {
+                shape += " ".repeat(5 - i); // Add leading spaces for centering
+                shape += character.repeat(2 * i - 1); // Add characters
+                shape += "\n"; // New line
+            }
+
+            shapeDisplay.textContent = shape;
+            shapeDisplay.style.color = color;
+        }
+
+        // Generate initial shape on page load
+        window.onload = generateShape;
+    </script>
+
+</body>
+</html>
