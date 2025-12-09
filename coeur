@@ -1,0 +1,30 @@
+# Définition des codes couleurs ANSI
+RED='\033[0;31m'  # Rouge
+GREEN='\033[0;32m' # Vert
+YELLOW='\033[1;33m' # Jaune (gras)
+NC='\033[0m'      # No Color (Réinitialisation)
+
+# Fonction pour dessiner une ligne de cœur
+draw_square() {
+    echo -e "\n"
+    for i in {1..5}; do
+        for j in {1..5}; do
+            # Alternance de couleurs pour un motif de damier
+            if (( (i + j) % 2 == 0 )); then
+                echo -e "${GREEN} ■ ${NC}\c" # \c pour ne pas sauter de ligne
+            else
+                echo -e "${RED} ■ ${NC}\c"
+            fi
+        done
+        echo "" # Nouvelle ligne après chaque rangée
+    done
+    echo -e "\n"
+}
+
+echo -e "Voici un cœur coloré :"
+draw_heart
+
+echo -e "Et un carré avec des motifs alternés :"
+draw_square
+
+echo -e "Fin du script."
